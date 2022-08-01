@@ -4,22 +4,22 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- '*'
+- 'build-pipeline'
 
 pool:
-  default
-  demands:
-  - npm
+  name: 'Default'
+Depends:
+- npm
 
 variables:
   buildConfiguration: 'Release'
 
 steps:
 - task: UseDotNet@2
-  displayName: 'Use .NET SDK 6.x'
-  inputs:
-    packageType: sdk
-    version: '6.x'
+    displayName: 'Use .NET SDK 6.x'
+    inputs:
+      packageType: sdk
+      version: '6.x'
 
 - task: Npm@1
   displayName: 'Run npm install'
